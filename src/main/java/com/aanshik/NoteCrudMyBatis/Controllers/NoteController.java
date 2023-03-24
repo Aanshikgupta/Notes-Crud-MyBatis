@@ -3,8 +3,11 @@ package com.aanshik.NoteCrudMyBatis.Controllers;
 import com.aanshik.NoteCrudMyBatis.Entity.Note;
 import com.aanshik.NoteCrudMyBatis.Payloads.NoteDto;
 import com.aanshik.NoteCrudMyBatis.Service.NoteService;
+import org.apache.coyote.Response;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,28 +19,28 @@ public class NoteController {
     NoteService noteService;
 
     @PostMapping("")
-    public int createNote(@RequestBody NoteDto noteDto) {
-        return noteService.createNote(noteDto);
+    public ResponseEntity<Integer> createNote(@RequestBody NoteDto noteDto) {
+        return new ResponseEntity<>(noteService.createNote(noteDto), HttpStatus.CREATED);
     }
 
     @GetMapping("")
-    public List<NoteDto> getAllNotes() {
-        return noteService.getAllNotes();
+    public ResponseEntity<List<NoteDto>> getAllNotes() {
+        return new ResponseEntity<>(noteService.getAllNotes(), HttpStatus.OK);
     }
 
     @GetMapping("/{noteId}")
-    public NoteDto getNoteById(@PathVariable Integer noteId) {
-        return noteService.getNoteById(noteId);
+    public ResponseEntity<NoteDto> getNoteById(@PathVariable Integer noteId) {
+        return new ResponseEntity<>(noteService.getNoteById(noteId), HttpStatus.OK);
     }
 
     @DeleteMapping("/{noteId}")
-    public int deleteNoteById(@PathVariable Integer noteId) {
-        return noteService.deleteNote(noteId);
+    public ResponseEntity<Integer> deleteNoteById(@PathVariable Integer noteId) {
+        return new ResponseEntity<>(noteService.deleteNote(noteId), HttpStatus.OK);
     }
 
     @PutMapping("/{noteId}")
-    public int updateNote(@RequestBody NoteDto noteDto, @PathVariable Integer noteId) {
-        return noteService.updateNote(noteDto, noteId);
+    public ResponseEntity<Integer> updateNote(@RequestBody NoteDto noteDto, @PathVariable Integer noteId) {
+        return new ResponseEntity<>(noteService.updateNote(noteDto, noteId), HttpStatus.OK);
 
     }
 
