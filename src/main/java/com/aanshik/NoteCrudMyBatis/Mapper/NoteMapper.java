@@ -16,7 +16,7 @@ public interface NoteMapper {
     List<Note> getAllNotes();
 
     @Update("UPDATE note SET description=#{note.description} WHERE id=#{noteId}")
-    int updateNote(Note note,Integer noteId);
+    int updateNote(Note note, Integer noteId);
 
     @Delete("DELETE FROM note WHERE id=#{noteId}")
     int deleteNote(Integer noteId);

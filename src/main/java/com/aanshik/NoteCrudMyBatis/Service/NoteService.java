@@ -9,7 +9,7 @@ public interface NoteService {
 
     public int createNote(NoteDto note);
 
-    public int updateNote(NoteDto note,Integer noteId);
+    public int updateNote(NoteDto note, Integer noteId);
 
     public int deleteNote(Integer noteId);
 
